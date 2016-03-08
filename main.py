@@ -3,6 +3,7 @@
 # Global imports
 import discord
 import logging
+import sys
 import os # for script restarts
 import re # for command processing, later
 # Local imports
@@ -53,7 +54,7 @@ class Command:
 
 	def get_response(self):
 		if self.command.startswith('!derpi'):
-			return derpi.process(self.command)
+			return derpi.process(self.message)
 
 
 @client.event
