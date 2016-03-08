@@ -1,25 +1,19 @@
 #!/usr/bin/env python3
 
+# Global imports
 import discord
 import logging
-import derpibooru
-import random
+import os # for script restarts
+import re # for command processing, later
+# Local imports
+import derpi
+import emotes
+import time
 
 logging.basicConfig(level=logging.INFO)
 
 EMAIL = 'hawke252.reddit@gmail.com'
 PW_FILE = 'pw.txt'
-
-nope_em = ['3g','angryal','confidentscoots','creepingloo','cutealoo','damusics','danceofherpeople',
-	'depressedscoots','easemyscoots','evilscoot','gonnabeawesome','ibelieveicanfly','icametowritefanfics',
-	'hoo1','hoo2','iamafillyandwhatisthis','letmetellyousomething','mfilly','notquitedashie','needsmorerainbowdash',
-	'nicemoves','scaredaloo','scaredyscoots','scaredyscoots2','scootaball','scootabreak','scootabuzzoff','scootachill',
-	'scootacloak','scootacookie2','scootacool2','scootacornered','scootacrush','scootacutie','scootadodo','scootadown',
-	'scootadrop','scootaderp','scootaderp2','scootafloor','scootahey','scootamap','scootapissed','scootasad2','scootasaywhat',
-	'scootaserious','scootasmug','scootasorry','scootastare','scootasure','scootathanks','scootathink','scootatrot',
-	'scootatwirl2','scootawat','scootawhat','scootawink','scootaworried','scootperplexity','scootired','scootscared',
-	'scootcontent','scoottongue','shockedscoots','sparkaloo', 
-	'masterofdrums', 'scootastop', 'scootasurprised', 'scootuh', 'scootuhwhat', 'wetscoots'] # Unsorted, emotes Hawke added
 
 client = discord.Client()
 
@@ -35,41 +29,52 @@ def find_pw(username):
 			raise LookupError("User not found: %s" % username)
 		return ret
 
-def derpi(query, highvoted=True):
-	print(query)
-	s = derpibooru.search.Search(key=find_pw('derpibooru'), sf='random',
-		q=set(query))
-	i = next(s)
-	while highvoted and i.upvotes < 100:
-		i = next(s)
-	return i.full + '\n' + i.url
+def restart(channel_id):
+	if os.name == 'nt':
+		os.spawnl(os.P_NOWAIT, sys.argv[0], channel_id)
+		client.logout()
+		sys.exit(0)
+	elif os.name == 'posix':
+		ex = os.execl(sys.argv[0], channel_id)
+	else:
+		logging.error("Unknown OS {}, could not restart".format(os.name))
+
+class Command:
+	def __init__(self, message):
+		self.message = message
+		self.command = message.content.lower()
+
+	def process(self):
+		if self.command.startswith('!reload'):
+			restart(self.message.channel.id)
+		if self.command.startswith('!stop'):
+			client.send_message(self.message.channel, "Stopping!")
+			sys.exit(0)
+
+	def get_response(self):
+		if self.command.startswith('!derpi'):
+			return derpi.process(self.command)
+
 
 @client.event
 def on_ready():
-    print('Ready!')
+	# Restart info should be in sys.argv
+    if len(sys.argv) == 3:
+    	logging.info('Launched with client ID {}. Last code revision: {}'.format(*sys.argv[1:3]))
+    	channel = client.get_channel(int(sys.argv[1]))
+    	client.send_message(channel, "Restarted!")
 
 @client.event
 def on_message(message):
 	if message.author != client.user:
-		print("{} said: {}".format(message.author, message.content))
-		msg = message.content.lower()
-		if msg.startswith('!scootabot') or msg.startswith('!derpi'):
-			words = [s.strip() for s in message.content.lower().split(' ',maxsplit=1)]
-			if len(words) == 1:
-				tags = []
-			else:
-				tags = words[1].split(',')
-			if "nsfw" not in message.channel.name:
-				tags.append("safe")
-			try:
-				response = derpi(tags)
-				client.send_message(message.channel, response)
-			except StopIteration:
-				try:
-					response = derpi(tags, highvoted=False)
-					client.send_message(message.channel, response)
-				except StopIteration:
-					client.send_message(message.channel, "[](/{}) Nope.".format(random.choice(nope_em)))
+		logging.info("{} said: {}".format(message.author, message.content))
+
+		cmd = Command(message=message)
+		cmd.process()
+		response = cmd.get_response()
+
+		if response:
+			client.send_message(message.channel, response)
 
 def main():
 	try:
