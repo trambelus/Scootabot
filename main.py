@@ -87,7 +87,7 @@ def on_ready():
 		logging.info('Launched with client ID {}. Last code revision: {}'.format(*sys.argv[1:3]))
 	if len(sys.argv) > 1:
 		print(sys.argv)
-		channel = client.get_channel(int(sys.argv[1]))
+		channel = client.get_channel(sys.argv[1])
 		print(channel)
 		client.send_message(channel, "Hi!")
 	logging.info("Ready!")
