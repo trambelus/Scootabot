@@ -68,7 +68,7 @@ class Command:
 			if self.command.startswith('!derpi'):
 				return derpi.process(self.message)
 
-			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(!|, | )scootabot', self.command):
+			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
 				author = re.search('(^| )\w+$', self.message.author.name).group().strip().title()
 				return emotes.get_message(emotes.HI, author)
 
@@ -93,7 +93,7 @@ def on_ready():
 		print(sys.argv)
 		channel = client.get_channel(sys.argv[1])
 		print(channel)
-		client.send_message(channel, "Hi!")
+		client.send_message(channel, emotes.get_message(emotes.HI, "all"))
 	logging.info("Ready!")
 	logging.debug("Launched with args {}".format(sys.argv))
 
