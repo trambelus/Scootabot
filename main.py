@@ -69,7 +69,7 @@ class Command:
 				return derpi.process(self.message)
 
 			if re.search(r'(^| )(hi|hello)(!|,| ).*scootabot', self.command):
-				author = re.search('(^| )\w+$', message.author.name).group().strip().title()
+				author = re.search('(^| )\w+$', self.message.author.name).group().strip().title()
 				return emotes.get_message(emotes.HI, author)
 
 		except SystemExit:
