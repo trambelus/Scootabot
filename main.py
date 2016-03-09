@@ -28,14 +28,17 @@ def restart(channel_id):
 		subprocess.Popen(' '.join(["python", sys.argv[0], str(channel_id)]))
 		client.logout()
 		sys.exit(0)
+
 	elif os.name == 'posix':
 		logging.info("POSIX restart")
-		client.logout()
 		msg = git.cmd.Git('.').pull()
+
 		if msg == 'Already up-to-date.':
 			return msg
 		else:
+			client.logout()
 			os.execl(sys.argv[0], str(channel_id))
+
 	else:
 		logging.error("Unknown OS {}, could not restart".format(os.name))
 
@@ -47,23 +50,24 @@ class Command:
 	def process(self):
 		try:
 			if self.command.startswith('!reload'):
-				msg = restart(self.message.channel.id)
-				# Only gets this far if a restart isn't happening
-				client.send_message(self.message.channel, msg)
+				return restart(self.message.channel.id)
+				# Only returns this if a restart isn't happening
+
 			if self.command.startswith('!stop'):
 				client.send_message(self.message.channel, "Stopping!")
 				sys.exit(0)
+
+			if self.command.startswith('!derpi'):
+				return derpi.process(self.message)
+
 		except SystemExit:
 			print("sys.exit called")
 			sys.exit(0)
+
 		except:
 			exc = traceback.format_exc()
 			client.send_message(self.message.channel, "[](/notquitedashie) ```{}```".format(exc))
 			print(exc)
-
-	def get_response(self):
-		if self.command.startswith('!derpi'):
-			return derpi.process(self.message)
 
 
 @client.event
