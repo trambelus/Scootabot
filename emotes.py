@@ -4,7 +4,9 @@
 import random
 from enum import Enum
 
-emote = Enum('emote', 'nope bye error hi huh yep')
+emote = Enum('emote', 'all nope bye error hi huh yep')
+# All Scootaloo emotes (-NSFW ones)
+all_emotes = [ ]
 # Emotes to express disagreement or that something is not possible
 nope = ['3g','angryal','confidentscoots','creepingloo','cutealoo','damusics',
         'danceofherpeople','depressedscoots','easemyscoots','evilscoot',
@@ -52,13 +54,28 @@ hi = ['adoorable','alandsublink','confidentscoots','creepaloo','cutealoo',
       'scootastand','scootasure','scootawink','scootdealwithit','smirkaloo',
       'sparkaloo','telegram','wolfscoots','wonderscoots']
 # Emotes to express confusion
-huh = [ ]
+huh = ['fuzzygauntlet','iamafillyandwhatisthis','icametowritefanfics',
+       'needsmorerainbowdash','notquitedashie','scootaderp2','scootadodo',
+       'scootaeww','scootafrown','scootaplease','scootashrug','scootastare',
+       'scootasure','scootasurprised','scootawat','scootawhat','scootawhat2',
+       'scootperplexity','scootuh','scootuhwhat']
 # Emotes to show agreement towards something
-yep = [ ]
+yep = ['adoorable','confidentscoots','creepingloo','cutealoo','danceofherpeople',
+       'eqgscoots','grinaloo','hoo1','hoo2','iwantit','numberonefan','scootabat',
+       'scootabat2','scootabite','scootabloom','scootabow','scootabuzz',
+       'scootabuzz3','scootachill','scootacloak','scootacookie','scootacool2',
+       'scootacutie','scootadorkable','scootagrin','scootaheart','scootahoodie',
+       'scootajump2','scootajump3','scootajump4','scootamarch','scootamunch',
+       'scootaplotting','scootapoint','scootapoint2','scootapprove','scootarear',
+       'scootarear2','scootasit','scootasmile','scootasmug','scootasquee',
+       'scootastand','scootathink','scootdealwithit','scootexcited','scoothappy',
+       'smirkaloo']
 
 def get_emote(eid):
     """ Given an emote identifier it will give a corresponding, randomly generated emote """
-    if (eid == emotes.nope):
+    if (eid == emotes.all):
+        return random.choice(all_emotes)
+    elif (eid == emotes.nope):
         return random.choice(nope)
     elif (eid == emotes.bye):
         return random.choice(bye)
