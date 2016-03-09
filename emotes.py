@@ -5,8 +5,64 @@ import random
 from enum import Enum
 
 emote = Enum('emote', 'all nope bye error hi huh yep')
-# All Scootaloo emotes (-NSFW ones)
-all_emotes = [ ]
+# All Scootaloo emotes (-NSFW ones, banana ones and a few weird ones)
+all_emotes = ['1g','20','3g','adoorable','agentscoots','alandsublink','aliloo',
+              'angryal','angryscoots','ascootafresh','bindingofscootaloo',
+              'blegh','bunnyloo','checkemscoots','cheekyscoots','cheekyscootsghost',
+              'chicken','chickendance','chickeneating','confidentscoots',
+              'creepaloo','creepingloo','crusadingscoots','cutealoo','damusics',
+              'danceofherpeople','darnsquids','depressedscoots','doodoodooscootaloo',
+              'easemyscoots','eqgscoots','evilscoot','fuzzygauntlet','gigglingscoots',
+              'gonnabeawesome','grinaloo','grumpyscoot','grumpyscoots','hoo1',
+              'hoo2','hugs','iamafillyandwhatisthis','ibelieveicanfly',
+              'icametowritefanfics','imrainbowdash','iwantit','masterofdrums',
+              'mfilly','mspscootaloo','needsmoarsleep','needsmorerainbowdash',
+              'nicemoves','notquitedashie','numberonefan','pikaloo','rainbowscootafun',
+              'rockaloo','scaredaloo','scaredyscoots','scaredyscoots2','scfear',
+              'scootaball','scootabark','scootabass','scootabat','scootabat2',
+              'scootabetes','scootabike','scootabite','scootabloom','scootablue',
+              'scootablush','scootablush2','scootabop','scootabounce','scootabow',
+              'scootabow2','scootabrag','scootabreak','scootabrows','scootabunny',
+              'scootabuzz','scootabuzz3','scootabuzzoff','scootacheer','scootacheering',
+              'scootachicken','scootachill','scootacloak','scootacomfy','scootacookie',
+              'scootacookie2','scootacool','scootacool2','scootacorn','scootacornered',
+              'scootacrush','scootacutie','scootaderp','scootaderp2','scootadoctor11',
+              'scootadodo','scootadorkable','scootadown','scootadrop',
+              'scootaduck','scootaeww','scootafied','scootafine','scootaflex',
+              'scootafloor','scootafly','scootafreakout','scootafresh',
+              'scootafrown','scootafun','scootaglider','scootagram','scootagrin',
+              'scootahail','scootahanging','scootahappy','scootahat',
+              'scootaheadbang','scootaheart','scootahey','scootahoodie',
+              'scootahug2','scootajeez','scootajew','scootajump','scootajump2',
+              'scootajump3','scootajump4','scootalick','scootalk','scootalong',
+              'scootaloo','scootaloodle','scootalooisdissapoint','scootaloospeople',
+              'scootamap','scootamarch','scootamunch','scootanap','scootannoyed',
+              'scootanoms','scootaomg','scootapaper','scootapissed','scootaplease',
+              'scootaplotting','scootapoint','scootapoint2','scootapoke','scootapprove',
+              'scootapuppyeyes','scootarace','scootaready','scootarear','scootarear2',
+              'scootarelax','scootarun','scootasad','scootasad2','scootasad3','scootasad4',
+              'scootasaywhat','scootascared','scootascoot','scootascoots','scootaserious',
+              'scootashock','scootashocked','scootashrug','scootasing','scootasit',
+              'scootasit2','scootasmile','scootasmile2','scootasmug','scootasnooze',
+              'scootasocks','scootasorry','scootasquee','scootastand','scootastare',
+              'scootastop','scootasure','scootasurprised','scootathanks',
+              'scootathat','scootathink','scootatimer','scootatrot','scootatwirl',
+              'scootatwirl2','scootatwitch','scootawan','scootawat','scootawhat',
+              'scootawhat2','scootawhip','scootawings','scootawink','scootawoo',
+              'scootaworried','scootayawn','scootayay','scootayeah','scootayell',
+              'scootayes','scootbeyond','scootbrag','scootcane','scootcontent',
+              'scootdealwithit','scooteww','scootexcite','scootexcited',
+              'scootflip','scoothappy','scootheart','scootidea','scootingscoots',
+              'scootired','scootles','scootno','scootperplexity','scootpiano',
+              'scootpocker','scootpoutghost','scootreally','scoots','scootsafraid',
+              'scootsalute','scootsassin','scootscantholdit','scootscared',
+              'scootsdunno','scootshandpizza','scootsscared','scootsseenthings',
+              'scoottongue','scootuh','scootuhwhat','scottaloo','scshock',
+              'seriouslyruffled','shockedscoots','skeptiloo','skydiverloo',
+              'sleepflying','sleepingscoots','smirkaloo','snoozaloo','sparkaloo',
+              'squintaloo','stokeloo','supercreepaloo','takemerainbowdash',
+              'telegram','uhhh','v41','wetscoots','wolfscoots','wonderscoots',
+              'wrongneighborhood','youreawesome','yourock','z47','zz11']
 # Emotes to express disagreement or that something is not possible
 nope = ['3g','angryal','confidentscoots','creepingloo','cutealoo','damusics',
         'danceofherpeople','depressedscoots','easemyscoots','evilscoot',
@@ -73,19 +129,19 @@ yep = ['adoorable','confidentscoots','creepingloo','cutealoo','danceofherpeople'
 
 def get_emote(eid):
     """ Given an emote identifier it will give a corresponding, randomly generated emote """
-    if (eid == emotes.all):
+    if (eid == emote.all):
         return random.choice(all_emotes)
-    elif (eid == emotes.nope):
+    elif (eid == emote.nope):
         return random.choice(nope)
-    elif (eid == emotes.bye):
+    elif (eid == emote.bye):
         return random.choice(bye)
-    elif (eid == emotes.error):
+    elif (eid == emote.error):
         return random.choice(error)
-    elif (eid == emotes.hi):
+    elif (eid == emote.hi):
         return random.choice(hi)
-    elif (eid == emotes.huh):
+    elif (eid == emote.huh):
         return random.choice(huh)
-    elif (eid == emotes.yep):
+    elif (eid == emote.yep):
         return random.choice(yep)
     else:
         return "invalid emote selection"
