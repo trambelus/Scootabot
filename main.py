@@ -62,11 +62,15 @@ class Command:
 				restart(self.message.channel.id, True)
 
 			if self.command.startswith('!stop'):
-				client.send_message(self.message.channel, "Stopping!")
+				client.send_message(self.message.channel, emotes.get_message(emotes.BYE))
 				sys.exit(0)
 
 			if self.command.startswith('!derpi'):
 				return derpi.process(self.message)
+
+			if re.search(r'(^| )(hi|hello)(!|,| ).*scootabot', self.command):
+				author = re.search('(^| )\w+$', message.author.name).group().strip().title()
+				return emotes.get_message(emotes.HI, author)
 
 		except SystemExit:
 			print("sys.exit called")

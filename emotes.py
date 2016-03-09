@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # em.py - contains emote definitions
 
-import random
-from enum import Enum
+from random import choice
+import time
+hour = lambda: int(time.strftime("%H"))
 
-emote = Enum('emote', 'all nope bye error hi huh yep')
+ALL,NOPE,BYE,ERROR,HI,HUH,YEP = range(7) # like the enum, but top-level
+# so we can do emotes.ALL instead of emotes.emote.all
+
 # All Scootaloo emotes (-NSFW ones, banana ones and a few weird ones)
 all_emotes = ['1g','20','3g','adoorable','agentscoots','alandsublink','aliloo',
               'angryal','angryscoots','ascootafresh','bindingofscootaloo',
@@ -64,7 +67,7 @@ all_emotes = ['1g','20','3g','adoorable','agentscoots','alandsublink','aliloo',
               'telegram','uhhh','v41','wetscoots','wolfscoots','wonderscoots',
               'wrongneighborhood','youreawesome','yourock','z47','zz11']
 # Emotes to express disagreement or that something is not possible
-nope = ['3g','angryal','confidentscoots','creepingloo','cutealoo','damusics',
+nope_emotes = ['3g','angryal','confidentscoots','creepingloo','cutealoo','damusics',
         'danceofherpeople','depressedscoots','easemyscoots','evilscoot',
         'gonnabeawesome','ibelieveicanfly','icametowritefanfics','hoo1','hoo2',
         'iamafillyandwhatisthis','letmetellyousomething','masterofdrums',
@@ -82,7 +85,7 @@ nope = ['3g','angryal','confidentscoots','creepingloo','cutealoo','damusics',
         'scoottongue','scootuh','scootuhwhat','shockedscoots',
         'wetscoots']
 # Emotes to say goodbye
-bye = ['eqgscoots','fuzzygauntlet','hoo1','hoo2','masterofdrums','scootabat',
+bye_emotes = ['eqgscoots','fuzzygauntlet','hoo1','hoo2','masterofdrums','scootabat',
        'scootabow','scootabuzz3','scootacheer','scootacloak','scootacookie',
        'scootacookie2','scootacutie','scootaderp2','scootadorkable',
        'scootaduck','scootafun','scootahail','scootahanging','scootaheart',
@@ -91,7 +94,7 @@ bye = ['eqgscoots','fuzzygauntlet','hoo1','hoo2','masterofdrums','scootabat',
        'scootheart','skydiverloo','sleepflying','sleepingscoots','snoozaloo',
        'sparkaloo']
 # Emotes to display with error messages
-error = ['3g','angryal','bindingofscootaloo','chicken','depressedscoots',
+error_emotes = ['3g','angryal','bindingofscootaloo','chicken','depressedscoots',
          'icametowritefanfics','needsmorerainbowdash','notquitedashie',
          'scaredyscoots','scootabow2','scootacrush','scootaderp','scootaderp2',
          'scootadown','scootadrop','scootaeww','scootafied','scootafloor',
@@ -100,7 +103,7 @@ error = ['3g','angryal','bindingofscootaloo','chicken','depressedscoots',
          'scootawat','scootawhat','scootawhat2','scootired','scootperplexity',
          'scootreally','scoottongue','scootuh','scottaloo','wetscoots']
 # Emotes to greet people
-hi = ['adoorable','alandsublink','confidentscoots','creepaloo','cutealoo',
+hi_emotes = ['adoorable','alandsublink','confidentscoots','creepaloo','cutealoo',
       'danceofherpeople','eqgscoots','grinaloo','needsmorerainbowdash',
       'scootaball','scootabat','scootabat2','scootabounce','scootabow',
       'scootacheer','scootacookie','scootacookie2','scootadorkable',
@@ -110,13 +113,13 @@ hi = ['adoorable','alandsublink','confidentscoots','creepaloo','cutealoo',
       'scootastand','scootasure','scootawink','scootdealwithit','smirkaloo',
       'sparkaloo','telegram','wolfscoots','wonderscoots']
 # Emotes to express confusion
-huh = ['fuzzygauntlet','iamafillyandwhatisthis','icametowritefanfics',
+huh_emotes = ['fuzzygauntlet','iamafillyandwhatisthis','icametowritefanfics',
        'needsmorerainbowdash','notquitedashie','scootaderp2','scootadodo',
        'scootaeww','scootafrown','scootaplease','scootashrug','scootastare',
        'scootasure','scootasurprised','scootawat','scootawhat','scootawhat2',
        'scootperplexity','scootuh','scootuhwhat']
 # Emotes to show agreement towards something
-yep = ['adoorable','confidentscoots','creepingloo','cutealoo','danceofherpeople',
+yep_emotes = ['adoorable','confidentscoots','creepingloo','cutealoo','danceofherpeople',
        'eqgscoots','grinaloo','hoo1','hoo2','iwantit','numberonefan','scootabat',
        'scootabat2','scootabite','scootabloom','scootabow','scootabuzz',
        'scootabuzz3','scootachill','scootacloak','scootacookie','scootacool2',
@@ -129,20 +132,52 @@ yep = ['adoorable','confidentscoots','creepingloo','cutealoo','danceofherpeople'
 
 def get_emote(eid):
     """ Given an emote identifier it will give a corresponding, randomly generated emote """
-    if (eid == emote.all):
-        return random.choice(all_emotes)
-    elif (eid == emote.nope):
-        return random.choice(nope)
-    elif (eid == emote.bye):
-        return random.choice(bye)
-    elif (eid == emote.error):
-        return random.choice(error)
-    elif (eid == emote.hi):
-        return random.choice(hi)
-    elif (eid == emote.huh):
-        return random.choice(huh)
-    elif (eid == emote.yep):
-        return random.choice(yep)
+    if (eid == ALL):
+        return choice(all_emotes)
+    elif (eid == NOPE):
+        return choice(nope_emotes)
+    elif (eid == BYE):
+        return choice(bye_emotes)
+    elif (eid == ERROR):
+        return choice(error_emotes)
+    elif (eid == HI):
+        return choice(hi_emotes)
+    elif (eid == HUH):
+        return choice(huh_emotes)
+    elif (eid == YEP):
+        return choice(yep_emotes)
     else:
         return "invalid emote selection"
     
+def get_message(eid, author=None):
+  """ Given an emote identifier, return a random message. Doesn't apply to all emotes. """
+  if (eid == NOPE):
+    ret = choice(["Nope", "Nuh-uh", "No way", "Nah"]) + choice(["", ".", "!"])
+
+  if (eid == BYE):
+    bye_messages = ["Later{}", "Bye{}"]
+    if 19 < hour() or hour < 6:
+      ret = choice(bye_messages + ["Goodnight{}", "Good night{}", "Sleep well{}", "Have a good sleep{}"]) + "!"
+    else:
+      ret = choice(bye_messages) + "!"
+
+    if author:
+      ret = ret.format(choice(['', ' {}', ', {}']).format(author))
+    else:
+      ret = ret.format('')
+
+  if (eid == HI):
+    hi_messages = ["Hi{}!", "Hey{}!", "Hiya{}!", "What's up{}?"]
+    if 6 < hour() < 12:
+      ret = choice(hi_messages + ["Morning{}!", "Good morning{}!"])
+    elif 12 < hour() <= 17:
+      ret = choice(hi_messages + ["Afternoon{}!", "Good afternoon{}!"])
+    elif 17 < hour() < 23:
+      ret = choice(hi_messages + ["Evening{}!", "Good evening{}!"])
+
+    if author:
+      ret = ret.format(choice(['', ' {}', ', {}']).format(author))
+    else:
+      ret = ret.format('')
+
+  return get_emote(eid) + ' ' + ret
