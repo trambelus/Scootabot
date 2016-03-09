@@ -80,6 +80,7 @@ def on_ready():
 		channel = client.get_channel(int(sys.argv[1]))
 		print(channel)
 		client.send_message(channel, "Hi!")
+	logging.info("Ready! Launched with args {}".format(sys.argv))
 
 @client.event
 def on_message(message):
