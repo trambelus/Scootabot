@@ -16,7 +16,7 @@ import derpi
 import emotes
 import auth
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 EMAIL = 'hawke252.reddit@gmail.com'
 
@@ -24,19 +24,20 @@ client = discord.Client()
 
 def restart(channel_id):
 	if os.name == 'nt':
-		logging.info("NT restart")
+		logging.debug("NT restart")
 		subprocess.Popen(' '.join(["python", sys.argv[0], str(channel_id)]))
 		client.logout()
 		sys.exit(0)
 
 	elif os.name == 'posix':
-		logging.info("POSIX restart")
+		logging.debug("POSIX restart")
 		msg = git.cmd.Git('.').pull()
 
 		if msg == 'Already up-to-date.':
 			return msg
 		else:
 			client.logout()
+			logging.debug("Restarting with args [{}], [{}]".format(sys.argv[0], str(channel_id)))
 			os.execl(sys.argv[0], str(channel_id))
 
 	else:
@@ -80,12 +81,13 @@ def on_ready():
 		channel = client.get_channel(int(sys.argv[1]))
 		print(channel)
 		client.send_message(channel, "Hi!")
-	logging.info("Ready! Launched with args {}".format(sys.argv))
+	logging.info("Ready!")
+	logging.debug("Launched with args {}".format(sys.argv))
 
 @client.event
 def on_message(message):
 	if message.author != client.user:
-		logging.info("{} said: {}".format(message.author, message.content))
+		logging.info(" {} said: {}".format(message.author, message.content))
 
 		cmd = Command(message=message)
 		cmd.process()
