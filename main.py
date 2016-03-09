@@ -22,7 +22,7 @@ EMAIL = 'hawke252.reddit@gmail.com'
 
 client = discord.Client()
 
-def restart(channel_id):
+def restart(channel_id, force=False):
 	if os.name == 'nt':
 		logging.debug("NT restart")
 		subprocess.Popen(' '.join(["python", sys.argv[0], str(channel_id)]))
@@ -34,7 +34,7 @@ def restart(channel_id):
 		msg = git.cmd.Git('.').pull()
 		logging.debug("Git pull yielded {}".format(msg))
 
-		if msg == 'Already up-to-date.':
+		if not force and msg == 'Already up-to-date.':
 			return msg
 		else:
 			logging.debug("Logging out")
@@ -57,6 +57,9 @@ class Command:
 			if self.command.startswith('!reload'):
 				return restart(self.message.channel.id)
 				# Only returns this if a restart isn't happening
+
+			if self.command.startswith('!force-reload'):
+				restart(self.message.channel.id, True)
 
 			if self.command.startswith('!stop'):
 				client.send_message(self.message.channel, "Stopping!")
