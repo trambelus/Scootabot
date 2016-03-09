@@ -16,7 +16,7 @@ import derpi
 import emotes
 import auth
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 EMAIL = 'hawke252.reddit@gmail.com'
 
@@ -39,10 +39,10 @@ def restart(channel_id):
 		else:
 			logging.debug("Logging out")
 			client.logout()
-			
-			logging.debug("Restarting with args [{}], [{}]".format(sys.argv[0], str(channel_id)))
+
+			logging.debug("Restarting with args {}, {}".format(sys.argv[0], str(channel_id)))
 			sys.stdout.flush()
-			os.execl(sys.argv[0], str(channel_id))
+			os.execl(sys.argv[0], sys.argv[0], str(channel_id))
 
 	else:
 		logging.error("Unknown OS {}, could not restart".format(os.name))
