@@ -4,13 +4,13 @@
 from enum import Enum
 
 emote = Enum('emote', 'nope bye error hi huh yep')
-
+# Emotes to express disagreement or that something is not possible
 nope = ['3g','angryal','confidentscoots','creepingloo','cutealoo','damusics',
         'danceofherpeople','depressedscoots','easemyscoots','evilscoot',
         'gonnabeawesome','ibelieveicanfly','icametowritefanfics','hoo1','hoo2',
         'iamafillyandwhatisthis','letmetellyousomething','masterofdrums',
         'mfilly','notquitedashie','needsmorerainbowdash','nicemoves',
-        'scaredaloo','scaredyscoots','scaredyscoots2','scootaball',
+        'scaredaloo','scaredyscoots','scaredyscoots2','scootaball','scootabark'
         'scootabreak','scootabuzzoff','scootachill','scootacloak',
         'scootacookie2','scootacool2','scootacornered','scootacrush',
         'scootacutie','scootadodo','scootadown','scootadrop','scootaderp',
@@ -22,21 +22,28 @@ nope = ['3g','angryal','confidentscoots','creepingloo','cutealoo','damusics',
         'scootperplexity','scootpocker','scootired','scootscared','scootcontent',
         'scoottongue','scootuh','scootuhwhat','shockedscoots',
         'wetscoots']
-
-bye = [ ]
-
+# Emotes to say goodbye
+bye = ['eqgscoots','fuzzygauntlet','hoo1','hoo2','masterofdrums','scootabat',
+       'scootabow','scootabuzz3','scootacheer','scootacloak','scootacookie',
+       'scootacookie2','scootacutie','scootaderp2','scootadorkable',
+       'scootaduck','scootafun','scootahail','scootahanging','scootaheart',
+       'scootahug2','scootalick','scootamarch','scootamunch','scootanap','scootanoms',
+       'scootaready','scootasit2','scootasmug','scootastand','scootdealwithit',
+       'scootheart','skydiverloo','sleepflying','sleepingscoots','snoozaloo',
+       'sparkaloo']
+# Emotes to display with error messages
 error = [ ]
-
+# Emotes to greet people
 hi = ['adoorable','alandsublink','confidentscoots','creepaloo','cutealoo',
       'danceofherpeople','eqgscoots','grinaloo','needsmorerainbowdash',
       'scootaball','scootabat','scootabat2','scootabounce','scootabow',
-      'scootacheer','scootacookie','scootadorkable','scootahanging',
-      'scootahoodie','scootajump','scootajump3','scootaloodle','scootanoms',
-      'scootapoint2','scootarear','scootarear2','scootasit','scootasit2',
-      'scootasmile','scootasmile2','scootasmug','scootasquee','scootastand',
-      'scootasure','scootawink','scootdealwithit','smirkaloo','sparkaloo',
-      'telegram','wolfscoots','wonderscoots']
-
+      'scootacheer','scootacookie','scootacookie2','scootadorkable',
+      'scootahanging','scootahoodie','scootajump','scootajump3','scootaloodle',
+      'scootanoms','scootapoint2','scootaready','scootarear','scootarear2','scootasit',
+      'scootasit2','scootasmile','scootasmile2','scootasmug','scootasquee',
+      'scootastand','scootasure','scootawink','scootdealwithit','smirkaloo',
+      'sparkaloo','telegram','wolfscoots','wonderscoots']
+# Emotes to express confusion
 huh = [ ]
-
+# Emotes to show agreement towards something
 yep = [ ]
