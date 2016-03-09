@@ -5,10 +5,12 @@ import discord
 import logging
 import sys
 import os # for script restarts
-import re # for command processing, later
-import traceback
 import subprocess
+import traceback
+import git
+
 import time
+import re # for command processing, later
 # Local imports
 import derpi
 import emotes
@@ -22,12 +24,18 @@ client = discord.Client()
 
 def restart(channel_id):
 	if os.name == 'nt':
-		logging.info(sys.argv[0])
+		logging.info("NT restart")
 		subprocess.Popen(' '.join(["python", sys.argv[0], str(channel_id)]))
 		client.logout()
 		sys.exit(0)
 	elif os.name == 'posix':
-		ex = os.execl(sys.argv[0], str(channel_id))
+		logging.info("POSIX restart")
+		client.logout()
+		msg = git.cmd.Git('.').pull()
+		if msg == 'Already up-to-date.':
+			return msg
+		else:
+			os.execl(sys.argv[0], str(channel_id))
 	else:
 		logging.error("Unknown OS {}, could not restart".format(os.name))
 
@@ -39,7 +47,9 @@ class Command:
 	def process(self):
 		try:
 			if self.command.startswith('!reload'):
-				restart(self.message.channel.id)
+				msg = restart(self.message.channel.id)
+				# Only gets this far if a restart isn't happening
+				client.send_message(self.message.channel, msg)
 			if self.command.startswith('!stop'):
 				client.send_message(self.message.channel, "Stopping!")
 				sys.exit(0)
@@ -63,7 +73,7 @@ def on_ready():
 		logging.info('Launched with client ID {}. Last code revision: {}'.format(*sys.argv[1:3]))
 	if len(sys.argv) > 1:
 		print(sys.argv)
-		channel = client.get_channel(sys.argv[1])
+		channel = client.get_channel(int(sys.argv[1]))
 		print(channel)
 		client.send_message(channel, "Hi!")
 
