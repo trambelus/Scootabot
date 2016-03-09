@@ -174,6 +174,8 @@ def get_message(eid, author=None):
       ret = choice(hi_messages + ["Afternoon{}!", "Good afternoon{}!"])
     elif 17 < hour() < 23:
       ret = choice(hi_messages + ["Evening{}!", "Good evening{}!"])
+    else:
+      ret = choice(hi_messages)
 
     if author:
       ret = ret.format(choice(['', ' {}', ', {}']).format(author))
