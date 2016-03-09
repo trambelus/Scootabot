@@ -35,7 +35,7 @@ def restart(channel_id, force=False):
 		logging.debug("Git pull yielded {}".format(msg))
 
 		if not force and msg == 'Already up-to-date.':
-			return msg
+			return emotes.get_emote(emotes.NOPE) + ' ' + msg
 		else:
 			logging.debug("Logging out")
 			client.logout()
