@@ -4,10 +4,11 @@
 import derpibooru
 import random
 import emotes
+import auth
 
 def search(query, highvoted=True):
 	print(query)
-	s = derpibooru.search.Search(key=find_pw('derpibooru'), sf='random',
+	s = derpibooru.search.Search(key=auth.find_pw('derpibooru'), sf='random',
 		q=set(query))
 	i = next(s)
 	while highvoted and i.upvotes < 100:
@@ -15,12 +16,12 @@ def search(query, highvoted=True):
 	return i.full + '\n' + i.url
 
 def process(message):
-	words = [s.strip() for s in message.lower().split(' ',maxsplit=1)]
+	words = [s.strip() for s in message.content.lower().split(' ',maxsplit=1)]
 	if len(words) == 1:
 		tags = []
 	else:
 		tags = words[1].split(',')
-	if "nsfw" not in message.channel.name:
+	if message.channel.is_private or "nsfw" not in message.channel.name:
 		tags.append("safe")
 	try:
 		response = search(tags)
