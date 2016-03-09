@@ -10,7 +10,7 @@ nope = ['3g','angryal','confidentscoots','creepingloo','cutealoo','damusics',
         'gonnabeawesome','ibelieveicanfly','icametowritefanfics','hoo1','hoo2',
         'iamafillyandwhatisthis','letmetellyousomething','masterofdrums',
         'mfilly','notquitedashie','needsmorerainbowdash','nicemoves',
-        'scaredaloo','scaredyscoots','scaredyscoots2','scootaball','scootabark'
+        'scaredaloo','scaredyscoots','scaredyscoots2','scootaball','scootabark','scootabow2'
         'scootabreak','scootabuzzoff','scootachill','scootacloak',
         'scootacookie2','scootacool2','scootacornered','scootacrush',
         'scootacutie','scootadodo','scootadown','scootadrop','scootaderp',
@@ -32,7 +32,14 @@ bye = ['eqgscoots','fuzzygauntlet','hoo1','hoo2','masterofdrums','scootabat',
        'scootheart','skydiverloo','sleepflying','sleepingscoots','snoozaloo',
        'sparkaloo']
 # Emotes to display with error messages
-error = [ ]
+error = ['3g','angryal','bindingofscootaloo','chicken','depressedscoots',
+         'icametowritefanfics','needsmorerainbowdash','notquitedashie',
+         'scaredyscoots','scootabow2','scootacrush','scootaderp','scootaderp2',
+         'scootadown','scootadrop','scootaeww','scootafied','scootafloor',
+         'scootafrown','scootahail','scootahat','scootamap','scootapaper',
+         'scootaplease','scootasad2','scootasad3','scootasorry','scootasurprised',
+         'scootawat','scootawhat','scootawhat2','scootired','scootperplexity',
+         'scootreally','scoottongue','scootuh','scottaloo','wetscoots']
 # Emotes to greet people
 hi = ['adoorable','alandsublink','confidentscoots','creepaloo','cutealoo',
       'danceofherpeople','eqgscoots','grinaloo','needsmorerainbowdash',
