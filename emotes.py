@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # em.py - contains emote definitions
 
+import random
 from enum import Enum
 
 emote = Enum('emote', 'nope bye error hi huh yep')
@@ -54,3 +55,21 @@ hi = ['adoorable','alandsublink','confidentscoots','creepaloo','cutealoo',
 huh = [ ]
 # Emotes to show agreement towards something
 yep = [ ]
+
+def get_emote(eid):
+    """ Given an emote identifier it will give a corresponding, randomly generated emote """
+    if (eid == emotes.nope):
+        return random.choice(nope)
+    elif (eid == emotes.bye):
+        return random.choice(bye)
+    elif (eid == emotes.error):
+        return random.choice(error)
+    elif (eid == emotes.hi):
+        return random.choice(hi)
+    elif (eid == emotes.huh):
+        return random.choice(huh)
+    elif (eid == emotes.yep):
+        return random.choice(yep)
+    else:
+        return "invalid emote selection"
+    
