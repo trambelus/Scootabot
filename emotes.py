@@ -133,21 +133,23 @@ yep_emotes = ['adoorable','confidentscoots','creepingloo','cutealoo','danceofher
 def get_emote(eid):
     """ Given an emote identifier it will give a corresponding, randomly generated emote """
     if (eid == ALL):
-        return choice(all_emotes)
+        ret = choice(all_emotes)
     elif (eid == NOPE):
-        return choice(nope_emotes)
+        ret = choice(nope_emotes)
     elif (eid == BYE):
-        return choice(bye_emotes)
+        ret = choice(bye_emotes)
     elif (eid == ERROR):
-        return choice(error_emotes)
+        ret = choice(error_emotes)
     elif (eid == HI):
-        return choice(hi_emotes)
+        ret = choice(hi_emotes)
     elif (eid == HUH):
-        return choice(huh_emotes)
+        ret = choice(huh_emotes)
     elif (eid == YEP):
-        return choice(yep_emotes)
-    else:
-        return "invalid emote selection"
+        ret = choice(yep_emotes)
+    else: # default case
+        ret = choice(nope_emotes)
+
+    return '[](/{})'.format(ret)
     
 def get_message(eid, author=None):
   """ Given an emote identifier, return a random message. Doesn't apply to all emotes. """
