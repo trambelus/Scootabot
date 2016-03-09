@@ -32,12 +32,16 @@ def restart(channel_id):
 	elif os.name == 'posix':
 		logging.debug("POSIX restart")
 		msg = git.cmd.Git('.').pull()
+		logging.debug("Git pull yielded {}".format(msg))
 
 		if msg == 'Already up-to-date.':
 			return msg
 		else:
+			logging.debug("Logging out")
 			client.logout()
+			
 			logging.debug("Restarting with args [{}], [{}]".format(sys.argv[0], str(channel_id)))
+			sys.stdout.flush()
 			os.execl(sys.argv[0], str(channel_id))
 
 	else:
