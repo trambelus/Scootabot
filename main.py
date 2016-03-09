@@ -70,6 +70,8 @@ class Command:
 			client.send_message(self.message.channel, "[](/notquitedashie) ```{}```".format(exc))
 			print(exc)
 
+		return None
+
 
 @client.event
 def on_ready():
@@ -90,8 +92,7 @@ def on_message(message):
 		logging.info(" {} said: {}".format(message.author, message.content))
 
 		cmd = Command(message=message)
-		cmd.process()
-		response = cmd.get_response()
+		response = cmd.process()
 
 		if response:
 			client.send_message(message.channel, response)
