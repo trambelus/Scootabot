@@ -153,14 +153,14 @@ def get_emote(eid):
     
 def get_message(eid, author=None):
   """ Given an emote identifier, return a random message. Doesn't apply to all emotes. """
-  hour = hour() - 5
+  current_hour = hour() - 5
   
   if (eid == NOPE):
     ret = choice(["Nope", "Nuh-uh", "No way", "Nah"]) + choice(["", ".", "!"])
 
   if (eid == BYE):
     bye_messages = ["Later{}", "Bye{}"]
-    if 19 < hour or hour < 6:
+    if 19 < current_hour or current_hour < 6:
       ret = choice(bye_messages + ["Goodnight{}", "Good night{}", "Sleep well{}", "Have a good sleep{}"]) + "!"
     else:
       ret = choice(bye_messages) + "!"
@@ -172,11 +172,11 @@ def get_message(eid, author=None):
 
   if (eid == HI):
     hi_messages = ["Hi{}!", "Hey{}!", "Hiya{}!", "What's up{}?"]
-    if 6 < hour < 12:
+    if 6 < current_hour < 12:
       ret = choice(hi_messages + ["Morning{}!", "Good morning{}!"])
-    elif 12 < hour <= 17:
+    elif 12 < current_hour <= 17:
       ret = choice(hi_messages + ["Afternoon{}!", "Good afternoon{}!"])
-    elif 17 < hour < 23:
+    elif 17 < current_hour < 23:
       ret = choice(hi_messages + ["Evening{}!", "Good evening{}!"])
     else:
       ret = choice(hi_messages)
