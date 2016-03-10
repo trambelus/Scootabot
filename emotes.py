@@ -186,4 +186,4 @@ def get_message(eid, author=None):
     else:
       ret = ret.format('')
 
-  return get_emote(eid) + ' ' + ret + '\nCurrent Hour: ' + current_hour
+  return get_emote(eid) + ' ' + ret + '\nCurrent Hour: ' + str(current_hour)
