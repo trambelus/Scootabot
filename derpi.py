@@ -31,4 +31,4 @@ def process(message):
 			response = search(tags, highvoted=False)
 			return response
 		except StopIteration:
-			return emotes.get_emote(emotes.NOPE) + ' Nope.'
+			return emotes.get_message(emotes.NOPE)
