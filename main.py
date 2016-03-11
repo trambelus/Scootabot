@@ -54,6 +54,9 @@ class Command:
 		self.message = message
 		self.command = message.content.lower()
 
+	def id_join(author, channel):
+		return author + ':' + channel
+
 	def process(self):
 		ret = None
 
@@ -95,9 +98,6 @@ class Command:
 			print(exc)
 
 		return ret
-
-	def id_join(author, channel):
-		return author + ':' + channel
 
 
 @client.event
