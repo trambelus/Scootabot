@@ -89,7 +89,7 @@ class Command:
 			print(exc)
 
 		self.last_command[self.message.author.id] = self.command
-		return ret
+		return ret + '\nCommand Given: ' + self.command
 
 
 @client.event
