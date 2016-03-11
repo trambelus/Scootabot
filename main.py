@@ -16,7 +16,7 @@ import derpi
 import emotes
 import auth
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, filename=time.strftime('logs/%Y-%m-%d_%H:%M:%S.log'))
 
 EMAIL = 'hawke252.reddit@gmail.com'
 
