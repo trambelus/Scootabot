@@ -56,7 +56,7 @@ class Command:
 
 	def process(self):
 		ret = None
-		not_a_function = True
+		func = True
 		try:
 			if self.command.startswith('!reload'):
 				ret = restart(self.message.channel.id)
