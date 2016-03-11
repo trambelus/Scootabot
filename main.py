@@ -92,7 +92,7 @@ class Command:
 			client.send_message(self.message.channel, "[](/notquitedashie) ```{}```".format(exc))
 			print(exc)
 
-		return ret + '\nCommand Given: ' + self.command
+		return ret
 
 
 @client.event
