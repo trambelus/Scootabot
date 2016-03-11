@@ -68,16 +68,18 @@ class Command:
 				sys.exit(0)
 			elif self.command.startswith('!derpi'):
 				ret = derpi.process(self.message)
-			elif self.command.startswith('!again') and self.message.author.id in self.last_command:
-				self.command = self.last_command[self.message.author.id]
-				self.message.content = self.last_command[self.message.author.id]
-				return self.process()
+			elif self.command.startswith('!again'):
+				if self.message.author.id in self.last_command:
+					self.command = self.last_command[self.message.author.id]
+					self.message.content = self.last_command[self.message.author.id]
+					return self.process()
+				else:
+					ret = emotes.get_message(emotes.HUH)
 			else:
 				func = False
 
 			if func:
 				self.last_command[self.message.author.id] = self.command
-
 
 			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
 				author = re.search('(^| )\w+$', self.message.author.name).group().strip().title()

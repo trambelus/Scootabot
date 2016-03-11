@@ -186,4 +186,8 @@ def get_message(eid, author=None):
     else:
       ret = ret.format('')
 
+  if eid == HUH:
+    huh_messages = ["Whah?","Huh?","Whah-huh?","What's that?","Sorry?","What?","Uhhh.."]
+    ret = choice(huh_messages)
+
   return get_emote(eid) + ' ' + ret
