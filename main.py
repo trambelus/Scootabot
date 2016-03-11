@@ -69,11 +69,10 @@ class Command:
 				sys.exit(0)
 
 			if self.command.startswith('!derpi'):
-				ret = derpi.process(self.message)
+				ret = derpi.process(self.command)
 
 			if self.command.startswith('!again') and self.message.author.id in self.last_command:
 				self.command = self.last_command[self.message.author.id]
-				self.message = self.last_command[self.message.author.id]
 				return self.process()
 
 			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
