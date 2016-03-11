@@ -74,7 +74,7 @@ class Command:
 				self.last_command[self.message.author.id + ':' + self.message.channel.id] = self.command
 
 			elif self.command.startswith('!again'):
-				if self.message.author.id in self.last_command:
+				if (self.message.author.id + ':' + self.message.channel.id) in self.last_command:
 					self.command = self.last_command[self.message.author.id + ':' + self.message.channel.id]
 					self.message.content = self.last_command[self.message.author.id + ':' + self.message.channel.id]
 					return self.process()
