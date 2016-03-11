@@ -73,6 +73,7 @@ class Command:
 
 			if self.command.startswith('!again') and self.message.author.id in self.last_command:
 				self.command = self.last_command[self.message.author.id]
+				self.message = self.last_command[self.message.author.id]
 				return self.process()
 
 			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
