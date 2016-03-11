@@ -56,30 +56,30 @@ class Command:
 
 	def process(self):
 		ret = None
-		func = True
+
 		try:
 			if self.command.startswith('!reload'):
 				ret = restart(self.message.channel.id)
 				# Only returns this if a restart isn't happening
+				
 			elif self.command.startswith('!force-reload'):
 				restart(self.message.channel.id, True)
+
 			elif self.command.startswith('!stop'):
 				client.send_message(self.message.channel, emotes.get_message(emotes.BYE))
 				sys.exit(0)
+
 			elif self.command.startswith('!derpi'):
 				ret = derpi.process(self.message)
+				self.last_command[self.message.author.id] = self.command
+
 			elif self.command.startswith('!again'):
 				if self.message.author.id in self.last_command:
 					self.command = self.last_command[self.message.author.id]
 					self.message.content = self.last_command[self.message.author.id]
 					return self.process()
 				else:
-					ret = emotes.get_message(emotes.HUH)
-			else:
-				func = False
-
-			if func:
-				self.last_command[self.message.author.id] = self.command
+					ret = emotes.get_message(emotes.HUH)				
 
 			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
 				author = re.search('(^| )\w+$', self.message.author.name).group().strip().title()
