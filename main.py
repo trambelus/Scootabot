@@ -16,7 +16,7 @@ import derpi
 import emotes
 import auth
 
-logging.basicConfig(level=logging.INFO, filename=time.strftime('logs/%Y-%m-%d_%H:%M:%S.log'))
+logging.basicConfig(level=logging.INFO, filename=time.strftime('logs/%Y-%m-%d_%H.%M.%S.log'))
 
 EMAIL = 'hawke252.reddit@gmail.com'
 
@@ -49,7 +49,7 @@ def restart(channel_id, force=False):
 
 class Command:
 	last_command = {}
-	
+
 	def __init__(self, message):
 		self.message = message
 		self.command = message.content.lower()
