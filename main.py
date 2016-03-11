@@ -48,8 +48,8 @@ def restart(channel_id, force=False):
 		logging.error("Unknown OS {}, could not restart".format(os.name))
 
 class Command:
-        last_command = { }
-        
+	last_command = {}
+	
 	def __init__(self, message):
 		self.message = message
 		self.command = message.content.lower()
