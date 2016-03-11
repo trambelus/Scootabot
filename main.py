@@ -71,12 +71,12 @@ class Command:
 
 			elif self.command.startswith('!derpi'):
 				ret = derpi.process(self.message)
-				self.last_command[self.message.author.id] = self.command
+				self.last_command[id_join(self.message.author.id, self.message.channel.id)] = self.command
 
 			elif self.command.startswith('!again'):
 				if self.message.author.id in self.last_command:
-					self.command = self.last_command[self.message.author.id]
-					self.message.content = self.last_command[self.message.author.id]
+					self.command = self.last_command[id_join(self.message.author.id, self.message.channel.id)]
+					self.message.content = self.last_command[id_join(self.message.author.id, self.message.channel.id)]
 					return self.process()
 				else:
 					ret = emotes.get_message(emotes.HUH)				
@@ -95,6 +95,9 @@ class Command:
 			print(exc)
 
 		return ret
+
+	def id_join(author, channel):
+		return author + ':' + channel
 
 
 @client.event
