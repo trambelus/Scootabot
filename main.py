@@ -48,14 +48,17 @@ def restart(channel_id, force=False):
 		logging.error("Unknown OS {}, could not restart".format(os.name))
 
 class Command:
+        last_command = { }
+        
 	def __init__(self, message):
 		self.message = message
 		self.command = message.content.lower()
 
 	def process(self):
+                ret = None
 		try:
 			if self.command.startswith('!reload'):
-				return restart(self.message.channel.id)
+				ret = restart(self.message.channel.id)
 				# Only returns this if a restart isn't happening
 
 			if self.command.startswith('!force-reload'):
@@ -66,11 +69,15 @@ class Command:
 				sys.exit(0)
 
 			if self.command.startswith('!derpi'):
-				return derpi.process(self.message)
+				ret = derpi.process(self.message)
+
+			if self.command.startswith('!again') and self.message.author.id in last_command:
+                                self.command = last_command[self.message.author.id]
+                                return process()
 
 			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
 				author = re.search('(^| )\w+$', self.message.author.name).group().strip().title()
-				return emotes.get_message(emotes.HI, author)
+				ret = emotes.get_message(emotes.HI, author)
 
 		except SystemExit:
 			print("sys.exit called")
@@ -81,7 +88,8 @@ class Command:
 			client.send_message(self.message.channel, "[](/notquitedashie) ```{}```".format(exc))
 			print(exc)
 
-		return None
+                last_command[self.message.author.id] = self.command
+		return ret
 
 
 @client.event
