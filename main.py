@@ -55,7 +55,7 @@ class Command:
 		self.command = message.content.lower()
 
 	def process(self):
-                ret = None
+		ret = None
 		try:
 			if self.command.startswith('!reload'):
 				ret = restart(self.message.channel.id)
@@ -72,8 +72,8 @@ class Command:
 				ret = derpi.process(self.message)
 
 			if self.command.startswith('!again') and self.message.author.id in last_command:
-                                self.command = last_command[self.message.author.id]
-                                return process()
+				self.command = last_command[self.message.author.id]
+				return process()
 
 			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
 				author = re.search('(^| )\w+$', self.message.author.name).group().strip().title()
@@ -88,7 +88,7 @@ class Command:
 			client.send_message(self.message.channel, "[](/notquitedashie) ```{}```".format(exc))
 			print(exc)
 
-                last_command[self.message.author.id] = self.command
+		last_command[self.message.author.id] = self.command
 		return ret
 
 
