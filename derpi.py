@@ -23,6 +23,10 @@ def process(message):
 		tags = words[1].split(',')
 	if message.channel.is_private or "nsfw" not in message.channel.name:
 		tags.append("safe")
+	# Blacklisted tags
+	tags.append("-poop")
+	tags.append("-diaper")
+	tags.append("-urine")
 	try:
 		response = search(tags)
 		return response
