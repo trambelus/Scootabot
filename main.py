@@ -58,22 +58,22 @@ class Command:
 		ret = None
 
 		try:
-			if self.command.startswith('!reload'):
+			if self.command == '!reload':
 				ret = restart(self.message.channel.id)
 				# Only returns this if a restart isn't happening
 				
-			elif self.command.startswith('!force-reload'):
+			elif self.command == '!force-reload':
 				restart(self.message.channel.id, True)
 
-			elif self.command.startswith('!stop'):
+			elif self.command == '!stop':
 				client.send_message(self.message.channel, emotes.get_message(emotes.BYE))
 				sys.exit(0)
 
-			elif self.command.startswith('!derpi'):
+			elif self.command.startswith('!derpi ') or self.command == '!derpi':
 				ret = derpi.process(self.message)
 				self.last_command[self.message.author.id + ':' + self.message.channel.id] = self.command
 
-			elif self.command.startswith('!again'):
+			elif self.command == '!again':
 				if (self.message.author.id + ':' + self.message.channel.id) in self.last_command:
 					self.command = self.last_command[self.message.author.id + ':' + self.message.channel.id]
 					self.message.content = self.last_command[self.message.author.id + ':' + self.message.channel.id]
