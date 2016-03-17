@@ -82,7 +82,7 @@ class Command:
 					ret = emotes.get_message(emotes.HUH)				
 
 			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
-				author = re.search('(^| )\w+♀?$', self.message.author.name).group().strip().title()
+				author = re.search('(^| )\w+( ♀)?$', self.message.author.name).group().strip().title()
 				ret = emotes.get_message(emotes.HI, author)
 
 		except SystemExit:
