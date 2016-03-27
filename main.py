@@ -81,8 +81,8 @@ class Command:
 				else:
 					ret = emotes.get_message(emotes.HUH)				
 
-			elif 'scootabot' in self.command and 'hawke' in self.command and 'favorite pon' in self.command:
-				ret = emotes.get_emote(emotes.YEP) + ' Twist!'
+			# elif 'scootabot' in self.command and 'hawke' in self.command and 'favorite pon' in self.command:
+			# 	ret = emotes.get_emote(emotes.YEP) + ' Twist!'
 
 			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
 				author = re.search('(^| )\w+( ♀)?$', self.message.author.name).group().strip().title()
