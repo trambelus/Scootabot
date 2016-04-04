@@ -79,8 +79,31 @@ class Command:
 					self.message.content = self.last_command[self.message.author.id + ':' + self.message.channel.id]
 					return self.process()
 				else:
-					ret = emotes.get_message(emotes.HUH)				
+					ret = emotes.get_message(emotes.HUH)
 
+			elif 'scootabot' in self.command:
+
+				if 'roll' in self.command:
+					search_res = re.search(r'\d+d(\d+)(\s*\+\s*\d+)?', self.command)
+					if not search_res:
+						return
+
+					roll = search_res.group(0).replace(' ','').replace('d','+').split('+')
+					if roll[0] == '':
+						roll[0] == '0'
+
+					dice = [random.randint(1, int(roll[1])) for _ in range(int(roll[0]))]
+					if len(roll) == 3:
+						dice += [int(roll[2])]
+
+					ret = "{} _Rolling {}d{}:_\n  {}\n**={}**".format(
+						emotes.get_emote(emotes.YEP),
+						roll[0],
+						" + ".join(roll[1:]),
+						" + ".join(dice),
+						sum(dice)
+					)
+					
 			# elif 'scootabot' in self.command and 'hawke' in self.command and 'favorite pon' in self.command:
 			# 	ret = emotes.get_emote(emotes.YEP) + ' Twist!'
 
