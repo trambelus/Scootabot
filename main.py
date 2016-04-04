@@ -90,7 +90,7 @@ class Command:
 					if not search_res:
 						return
 
-					roll = [1 if e == '' else e for e in search_res.group(0).replace(' ','').replace('d','+').split('+')]
+					roll = ['1' if e == '' else e for e in search_res.group(0).replace(' ','').replace('d','+').split('+')]
 
 					dice = [random.randint(1, int(roll[1])) for _ in range(int(roll[0]))]
 					if len(roll) == 3:
