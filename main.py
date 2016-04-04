@@ -10,7 +10,9 @@ import traceback
 import git
 
 import time
-import re # for command processing, later
+import re
+import random
+
 # Local imports
 import derpi
 import emotes
@@ -84,7 +86,7 @@ class Command:
 			elif 'scootabot' in self.command:
 
 				if 'roll' in self.command:
-					search_res = re.search(r'\d+d(\d+)(\s*\+\s*\d+)?', self.command)
+					search_res = re.search(r'\d*d(\d+)(\s*\+\s*\d+)?', self.command)
 					if not search_res:
 						return
 
@@ -103,7 +105,7 @@ class Command:
 						" + ".join(dice),
 						sum(dice)
 					)
-					
+
 			# elif 'scootabot' in self.command and 'hawke' in self.command and 'favorite pon' in self.command:
 			# 	ret = emotes.get_emote(emotes.YEP) + ' Twist!'
 
