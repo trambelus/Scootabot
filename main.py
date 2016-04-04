@@ -90,13 +90,11 @@ class Command:
 					if not search_res:
 						return
 
-					roll = search_res.group(0).replace(' ','').replace('d','+').split('+')
-					if roll[0] == '':
-						roll[0] == '0'
+					roll = [0 if e == None else e for int(e) in search_res.group(0).replace(' ','').replace('d','+').split('+')]
 
-					dice = [random.randint(1, int(roll[1])) for _ in range(int(roll[0]))]
+					dice = [random.randint(1, roll[1]) for _ in range(roll[0])]
 					if len(roll) == 3:
-						dice += [int(roll[2])]
+						dice += [roll[2]]
 
 					ret = "{} _Rolling {}d{}:_\n  {}\n**={}**".format(
 						emotes.get_emote(emotes.YEP),
