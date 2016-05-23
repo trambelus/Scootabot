@@ -96,13 +96,24 @@ class Command:
 					if len(roll) == 3:
 						dice += [roll[2]]
 
-					ret = "{}\n _Rolling {}d{}:_\n  {}\n**={}**".format(
-						emotes.get_emote(emotes.YEP),
-						roll[0],
-						" + ".join(map(str,roll[1:])),
-						" + ".join(map(str,dice)),
-						sum(dice)
-					)
+					if len(roll) == 2:
+						ret = "{}\n _Rolling {}d{}:_\n**{}**".format(
+							emotes.get_emote(emotes.YEP),
+							roll[0],
+							" + ".join(map(str,roll[1:])),
+							sum(dice)
+						)
+					else:	
+						ret = "{}\n _Rolling {}d{}:_\n  {}\n**={}**".format(
+							emotes.get_emote(emotes.YEP),
+							roll[0],
+							" + ".join(map(str,roll[1:])),
+							" + ".join(map(str,dice)),
+							sum(dice)
+						)
+
+				elif 'thanks' in self.command:
+					ret = "{} {}".format(emotes.get_emote(emotes.YEP), "You're welcome!")
 
 			# elif 'scootabot' in self.command and 'hawke' in self.command and 'favorite pon' in self.command:
 			# 	ret = emotes.get_emote(emotes.YEP) + ' Twist!'
