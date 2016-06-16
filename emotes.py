@@ -158,6 +158,9 @@ def get_message(eid, author=None):
   if (eid == NOPE):
     ret = choice(["Nope", "Nuh-uh", "No way", "Nah"]) + choice(["", ".", "!"])
 
+  if (eid == YEP):
+    ret = choice(["Yep","Yeah","Yes","Uh-huh"]) + choice(["",".","!","!"])
+
   if (eid == BYE):
     bye_messages = ["Later{}", "Bye{}"]
     if 19 < current_hour or current_hour < 6:

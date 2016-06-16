@@ -115,6 +115,9 @@ class Command:
 				elif 'thanks' in self.command:
 					ret = "{} {}".format(emotes.get_emote(emotes.YEP), "You're welcome!")
 
+				elif self.command[-1] == "!":
+					ret = emotes.get_message(emotes.YEP)
+
 			# elif 'scootabot' in self.command and 'hawke' in self.command and 'favorite pon' in self.command:
 			# 	ret = emotes.get_emote(emotes.YEP) + ' Twist!'
 
