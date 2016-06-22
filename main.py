@@ -65,7 +65,7 @@ class Command:
 				# Only returns this if a restart isn't happening
 				
 			elif self.command == '!force-reload':
-				restart(self.message.channel.id, True)
+				restart(self.message.channel.id, force=True)
 
 			elif self.command == '!stop':
 				client.send_message(self.message.channel, emotes.get_message(emotes.BYE))
@@ -118,6 +118,9 @@ class Command:
 				elif self.command[-1] == "!":
 					ret = emotes.get_message(emotes.YEP)
 
+				elif self.command[-1] == "?":
+					ret = emotes.get_message(emotes.NOPE)
+
 			# elif 'scootabot' in self.command and 'hawke' in self.command and 'favorite pon' in self.command:
 			# 	ret = emotes.get_emote(emotes.YEP) + ' Twist!'
 
@@ -146,7 +149,7 @@ def on_ready():
 		print(sys.argv)
 		channel = client.get_channel(sys.argv[1])
 		print(channel)
-		client.send_message(channel, emotes.get_message(emotes.HI, "all"))
+		client.send_message(channel, emotes.get_message(emotes.HI, random.choice(["all","everyone","everybody","folks","guys","y'all"])))
 	logging.info("Ready!")
 	logging.debug("Launched with args {}".format(sys.argv))
 
