@@ -72,7 +72,7 @@ nope_emotes = ['3g','angryal','confidentscoots','creepingloo','cutealoo','damusi
         'gonnabeawesome','ibelieveicanfly','icametowritefanfics','hoo1','hoo2',
         'iamafillyandwhatisthis','letmetellyousomething','masterofdrums',
         'mfilly','notquitedashie','needsmorerainbowdash','nicemoves',
-        'scaredaloo','scaredyscoots','scaredyscoots2','scootaball','scootabark','scootabow2'
+        'scaredaloo','scaredyscoots','scaredyscoots2','scootaball','scootabark','scootabow2',
         'scootabreak','scootabuzzoff','scootachill','scootacloak',
         'scootacookie2','scootacool2','scootacornered','scootacrush',
         'scootacutie','scootadodo','scootadown','scootadrop','scootaderp',
