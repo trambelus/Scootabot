@@ -12,7 +12,10 @@ def respond(self):
 	if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
 		#author = re.search('(^| )\w+( ♀)?$', self.message.author.name).group().strip().title()
 		#ret = emotes.get_message(emotes.HI, author)
-		response = emotes.get_message(emotes.HI, self.message.author.id)
+		if (self.message.author.id == '134968288772882432'):
+			response = "Hawkaloo... You son of a bitch"
+		else:
+			response = emotes.get_message(emotes.HI, self.message.author.id)
 	elif ("?" in self.command):
 		chance = random.randint(0, 98)
 
