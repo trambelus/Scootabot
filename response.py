@@ -23,7 +23,7 @@ def respond(self):
 		chance = random.randint(0, 10)
 
 		if (chance < 7):
-			response = emotes.get_message(emotes.HI, random.choice(nicknames[self.message.author.id])
+			response = emotes.get_message(emotes.HI, random.choice(nicknames[self.message.author.id]))
 		elif (7 <= chance < 9):
 			response = emotes.get_message(emotes.HI, random.choice(self.message.author.display_name))
 		else:
