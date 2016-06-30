@@ -185,7 +185,7 @@ def get_message(eid, author=None):
       ret = choice(hi_messages)
 
     if author:
-      ret = ret.format(choice(['', ' {}', ', {}']).format(author))
+      ret = ret.format(choice([' {}', ', {}']).format(author))
     else:
       ret = ret.format('')
 
