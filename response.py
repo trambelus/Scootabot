@@ -15,6 +15,8 @@ def respond(message):
 			response = emotes.get_message(emotes.NOPE)
 		else:
 			response = emotes.get_message(emotes.HUH)
+	else:
+		response = "no u"
 
 	return response
 
