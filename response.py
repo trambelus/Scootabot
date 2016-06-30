@@ -6,12 +6,13 @@ import re
 import emotes
 
 nicknames = {
-	'134968288772882432': ['Hawkaloo', 'Hawke', 'Hawkey', 'Hawkey Hawke']
-	'136190686230741002': ['Trambles', 'Trambelus', 'Trambuck', 'Buck', 'Applebuck', 'Applepone', 'Best Apple']
-	'110932722322505728': ['Woof', 'Woofy', 'Ian', 'Woofy Woof', 'Best Woof']
-	'166229158681247753': ['Carbon', 'Dragon', 'Carburd', 'Best Dragon']
+	'134968288772882432': ['Hawkaloo', 'Hawke', 'Hawkey', 'Hawkey Hawke'],
+	'136190686230741002': ['Trambles', 'Trambelus', 'Trambuck', 'Buck', 'Applebuck', 'Applepone', 'Best Apple'],
+	'110932722322505728': ['Woof', 'Woofy', 'Ian', 'Woofy Woof', 'Best Woof'],
+	'166229158681247753': ['Carbon', 'Dragon', 'Carburd', 'Best Dragon'],
 	'any': ['Sexy', 'Butts' ]
 }
+
 def respond(self):
 	response = ""
 
