@@ -1,6 +1,8 @@
 
 import random
 
+import re
+
 import emotes
 
 def respond(self):
