@@ -22,12 +22,12 @@ def respond(self):
 		#ret = emotes.get_message(emotes.HI, author)
 		chance = random.randint(0, 10)
 
-		if (chance < 7):
-			response = emotes.get_message(emotes.HI, random.choice(nicknames[self.message.author.id]))
-		elif (7 <= chance < 9):
+		#if (chance < 7):
+		#	response = emotes.get_message(emotes.HI, random.choice(nicknames[self.message.author.id]))
+		#elif (7 <= chance < 9):
 			response = emotes.get_message(emotes.HI, self.message.author.display_name)
-		else:
-			response = emotes.get_message(emotes.HI, random.choice(nicknames['any']))
+		#else:
+		#	response = emotes.get_message(emotes.HI, random.choice(nicknames['any']))
 	elif ("?" in self.command):
 		chance = random.randint(0, 98)
 
