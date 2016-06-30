@@ -3,10 +3,15 @@ import random
 
 import emotes
 
-def respond(message):
+def respond(self):
 	response = ""
 
-	if ("?" in message):
+
+	if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
+		#author = re.search('(^| )\w+( ♀)?$', self.message.author.name).group().strip().title()
+		#ret = emotes.get_message(emotes.HI, author)
+		response = emotes.get_message(emotes.HI, self.message.author.id)
+	elif ("?" in self.command):
 		chance = random.randint(0, 98)
 
 		if (chance < 34):

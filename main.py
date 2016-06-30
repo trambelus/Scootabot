@@ -114,7 +114,7 @@ class Command:
 						)
 
 				else:
-					ret = response.respond(self.command)
+					ret = response.respond(self)
 				#elif 'thanks' in self.command:
 				#	ret = "{} {}".format(emotes.get_emote(emotes.YEP), "You're welcome!")
 
@@ -127,9 +127,9 @@ class Command:
 			# elif 'scootabot' in self.command and 'hawke' in self.command and 'favorite pon' in self.command:
 			# 	ret = emotes.get_emote(emotes.YEP) + ' Twist!'
 
-			if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
-				author = re.search('(^| )\w+( ♀)?$', self.message.author.name).group().strip().title()
-				ret = emotes.get_message(emotes.HI, author)
+			#if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
+			#	author = re.search('(^| )\w+( ♀)?$', self.message.author.name).group().strip().title()
+			#	ret = emotes.get_message(emotes.HI, author)
 
 		except SystemExit:
 			print("sys.exit called")
