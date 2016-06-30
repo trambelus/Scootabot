@@ -17,7 +17,7 @@ import random
 import derpi
 import emotes
 import auth
-from response import Responder
+import response
 
 logging.basicConfig(level=logging.INFO, filename=time.strftime('logs/%Y-%m-%d_%H.%M.%S.log'))
 
@@ -114,7 +114,7 @@ class Command:
 						)
 
 				else:
-					ret = Responder.respond(self.command)
+					ret = response.respond(self.command)
 				#elif 'thanks' in self.command:
 				#	ret = "{} {}".format(emotes.get_emote(emotes.YEP), "You're welcome!")
 

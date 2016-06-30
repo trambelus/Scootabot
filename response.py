@@ -3,7 +3,6 @@ import random
 
 import emotes
 
-class Responder:
 	def respond(message):
 		response = ""
 
@@ -12,7 +11,7 @@ class Responder:
 
 			if (chance < 34):
 				response = emotes.get_message(emotes.YEP)
-			elif (chance >= 34 && chance < 67):
+			elif (34 <= chance < 67):
 				response = emotes.get_message(emotes.NOPE)
 			else:
 				response = emotes.get_message(emotes.HUH)
