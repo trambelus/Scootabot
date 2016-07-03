@@ -55,39 +55,39 @@ class Command:
 
 	def __init__(self, message):
 		self.message = message
-		self.command = message.content.lower()
+		self.text = message.content.lower()
 
 	def process(self):
 		ret = None
 
 		try:
-			if self.command == '!reload':
+			if self.text == '!reload':
 				ret = restart(self.message.channel.id)
 				# Only returns this if a restart isn't happening
 				
-			elif self.command == '!force-reload':
+			elif self.text == '!force-reload':
 				restart(self.message.channel.id, force=True)
 
-			elif self.command == '!stop':
+			elif self.text == '!stop':
 				client.send_message(self.message.channel, emotes.get_message(emotes.BYE))
 				sys.exit(0)
 
-			elif self.command.startswith('!derpi ') or self.command == '!derpi':
+			elif self.text.startswith('!derpi ') or self.text == '!derpi':
 				ret = derpi.process(self.message)
-				self.last_command[self.message.author.id + ':' + self.message.channel.id] = self.command
+				self.last_command[self.message.author.id + ':' + self.message.channel.id] = self.text
 
-			elif self.command == '!again':
+			elif self.text == '!again':
 				if (self.message.author.id + ':' + self.message.channel.id) in self.last_command:
-					self.command = self.last_command[self.message.author.id + ':' + self.message.channel.id]
+					self.text = self.last_command[self.message.author.id + ':' + self.message.channel.id]
 					self.message.content = self.last_command[self.message.author.id + ':' + self.message.channel.id]
 					return self.process()
 				else:
 					ret = emotes.get_message(emotes.HUH)
 
-			elif 'scootabot' in self.command:
+			elif 'scootabot' in self.text:
 
-				if 'roll' in self.command:
-					search_res = re.search(r'\d*d(\d+)(\s*\+\s*\d+)?', self.command)
+				if 'roll' in self.text:
+					search_res = re.search(r'\d*d(\d+)(\s*\+\s*\d+)?', self.text)
 					if not search_res:
 						return
 
@@ -115,19 +115,19 @@ class Command:
 
 				else:
 					ret = response.respond(self)
-				#elif 'thanks' in self.command:
+				#elif 'thanks' in self.text:
 				#	ret = "{} {}".format(emotes.get_emote(emotes.YEP), "You're welcome!")
 
-				#elif self.command[-1] == "!":
+				#elif self.text[-1] == "!":
 				#	ret = emotes.get_message(emotes.YEP)
 
-				#elif self.command[-1] == "?":
+				#elif self.text[-1] == "?":
 				#	ret = emotes.get_message(emotes.NOPE)
 
-			# elif 'scootabot' in self.command and 'hawke' in self.command and 'favorite pon' in self.command:
+			# elif 'scootabot' in self.text and 'hawke' in self.text and 'favorite pon' in self.text:
 			# 	ret = emotes.get_emote(emotes.YEP) + ' Twist!'
 
-			#if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.command):
+			#if re.search(r'(^| )(hi|hello|hey|hi there|hiya|heya|howdy)(! |, | )scootabot', self.text):
 			#	author = re.search('(^| )\w+( ♀)?$', self.message.author.name).group().strip().title()
 			#	ret = emotes.get_message(emotes.HI, author)
 
