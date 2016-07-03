@@ -33,6 +33,7 @@ def question_which(text):
         return None
     words = nltk.word_tokenize(text)
     pos = nltk.pos_tag(words)
+    print(pos)
     idx = words.index('or')
     choices = []
     
@@ -40,9 +41,10 @@ def question_which(text):
         choice = []
         if pos[i][1] == ',':
             i -= 1
+        acceptable = ['JJ', 'NN', 'DT', 'RB', 'VB']
         while True:
             tr = (pos[i][1][:2] if 0 <= i < len(pos) else '')
-            if tr in ['JJ', 'NN', 'DT', 'RB', 'VB']:
+            if tr in acceptable:
                 if mod > 0:
                     choice.append(words[i])
                 else:
