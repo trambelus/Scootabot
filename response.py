@@ -42,7 +42,7 @@ def question_which(text):
             i -= 1
         while True:
             tr = (pos[i][1][:2] if 0 <= i < len(pos) else '')
-            if tr in ['JJ', 'NN', 'DT', 'RB']:
+            if tr in ['JJ', 'NN', 'DT', 'RB', 'VB']:
                 if mod > 0:
                     choice.append(words[i])
                 else:
