@@ -84,7 +84,7 @@ def respond(command):
         #if (chance < 7):
         #    response = emotes.get_message(emotes.HI, random.choice(nicknames[command.message.author.id]))
         #elif (7 <= chance < 9):
-        response = emotes.get_message(emotes.HI, command.message.author.nick)
+        response = emotes.get_message(emotes.HI, command.message.author.name)
         #else:
         #    response = emotes.get_message(emotes.HI, random.choice(nicknames['any']))
     elif ("?" in command.text):
