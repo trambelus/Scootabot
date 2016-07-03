@@ -88,7 +88,7 @@ def respond(command):
         #else:
         #    response = emotes.get_message(emotes.HI, random.choice(nicknames['any']))
     elif ("?" in command.text):
-        response = question_which(text)
+        response = question_which(command.text)
         if response == None:
             response = question_general()
     else:
