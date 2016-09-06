@@ -29,7 +29,7 @@ def restart(channel_id, force=False):
     if os.name == 'nt':
         logging.debug("NT restart")
         subprocess.Popen(' '.join(["python", sys.argv[0], str(channel_id)]))
-        client.logout()
+        yield from client.logout()
         sys.exit(0)
 
     elif os.name == 'posix':
@@ -41,7 +41,7 @@ def restart(channel_id, force=False):
             return emotes.get_emote(emotes.NOPE) + ' ' + msg
         else:
             logging.debug("Logging out")
-            client.logout()
+            yield from client.logout()
 
             logging.debug("Restarting with args {}, {}".format(sys.argv[0], str(channel_id)))
             sys.stdout.flush()
@@ -69,7 +69,7 @@ class Command:
                 restart(self.message.channel.id, force=True)
 
             elif self.text == '!stop':
-                client.send_message(self.message.channel, emotes.get_message(emotes.BYE))
+                yield from client.send_message(self.message.channel, emotes.get_message(emotes.BYE))
                 sys.exit(0)
 
             elif self.text.startswith('!derpi ') or self.text == '!derpi':
@@ -137,13 +137,14 @@ class Command:
 
         except:
             exc = traceback.format_exc()
-            client.send_message(self.message.channel, "[](/notquitedashie) ```{}```".format(exc))
+            yield from client.send_message(self.message.channel, "[](/notquitedashie) ```{}```".format(exc))
             print(exc)
 
         return ret
 
 
 @client.event
+@asyncio.coroutine
 def on_ready():
     # Restart info should be in sys.argv
     if len(sys.argv) == 3:
@@ -152,11 +153,12 @@ def on_ready():
         print(sys.argv)
         channel = client.get_channel(sys.argv[1])
         print(channel)
-        client.send_message(channel, emotes.get_message(emotes.HI, random.choice(["all","everyone","everybody","folks","guys","y'all"])))
+        yield from client.send_message(channel, emotes.get_message(emotes.HI, random.choice(["all","everyone","everybody","folks","guys","y'all"])))
     logging.info("Ready!")
     logging.debug("Launched with args {}".format(sys.argv))
 
 @client.event
+@asyncio.coroutine
 def on_message(message):
     if message.author != client.user:
         logging.info(" {} said: {}".format(message.author, message.content))
@@ -165,13 +167,13 @@ def on_message(message):
         response = cmd.process()
 
         if response:
-            client.send_message(message.channel, response)
+            yield from client.send_message(message.channel, response)
 
 def main():
 
     password = auth.find_pw(EMAIL)
 
-    client.login(EMAIL, password)
+    yield from client.login(EMAIL, password)
     client.run() # enter main loop
 
 if __name__ == '__main__':
