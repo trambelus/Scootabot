@@ -56,7 +56,7 @@ class Command:
         self.message = message
         self.text = message.content.lower()
 
-    async def process(self):
+    def process(self):
         ret = None
 
         try:
@@ -85,7 +85,7 @@ class Command:
                     ret = emotes.get_message(emotes.HUH)
 
             elif self.text == '!join':
-                await next(client.join_voice_channel(discord.Object(id='134973009910956033')))
+                #await next(client.join_voice_channel(discord.Object(id='134973009910956033')))
 
             elif 'scootabot' in self.text:
 
