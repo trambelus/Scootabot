@@ -22,8 +22,6 @@ import response
 
 logging.basicConfig(level=logging.INFO, filename=time.strftime('logs/%Y-%m-%d_%H.%M.%S.log'))
 
-EMAIL = 'hawke252.reddit@gmail.com'
-
 client = discord.Client()
 
 def restart(channel_id, force=False):
@@ -174,10 +172,10 @@ def on_message(message):
 
 def main():
 
-    password = auth.find_pw(EMAIL)
+    password = auth.find_pw("discord")
 
     #yield from client.login(EMAIL, password)
-    client.run(EMAIL, password) # enter main loop
+    client.run(password) # enter main loop
 
 if __name__ == '__main__':
     main()
