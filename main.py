@@ -171,7 +171,7 @@ def on_message(message):
         response = cmd.process()
 
         if response == "join":
-            yield from voice.join_voice_channel(discord.Object(id='134973009910956033'))
+            yield from client.join_voice_channel(discord.Object(id='134973009910956033'))
         elif response:
             yield from client.send_message(message.channel, response)
 
