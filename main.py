@@ -70,7 +70,8 @@ class Command:
                 restart(self.message.channel.id, force=True)
 
             elif self.text == '!stop':
-                client.send_message(self.message.channel, emotes.get_message(emotes.BYE))
+                # Broken call
+                #client.send_message(self.message.channel, emotes.get_message(emotes.BYE))
                 sys.exit(0)
 
             elif self.text.startswith('!derpi ') or self.text == '!derpi':
@@ -138,7 +139,8 @@ class Command:
 
         except:
             exc = traceback.format_exc()
-            client.send_message(self.message.channel, "[](/notquitedashie) ```{}```".format(exc))
+            # Broken call
+            #client.send_message(self.message.channel, "[](/notquitedashie) ```{}```".format(exc))
             print(exc)
 
         return ret
