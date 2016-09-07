@@ -174,8 +174,8 @@ def main():
 
     password = auth.find_pw(EMAIL)
 
-    yield from client.login(EMAIL, password)
-    client.run() # enter main loop
+    #yield from client.login(EMAIL, password)
+    client.run(EMAIL, password) # enter main loop
 
 if __name__ == '__main__':
     main()
