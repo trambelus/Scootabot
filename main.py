@@ -84,6 +84,9 @@ class Command:
                 else:
                     ret = emotes.get_message(emotes.HUH)
 
+            elif self.text == '!join':
+                join_voice_channel(134973009910956033)
+
             elif 'scootabot' in self.text:
 
                 if 'roll' in self.text:
