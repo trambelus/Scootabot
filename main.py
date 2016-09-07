@@ -85,7 +85,7 @@ class Command:
                     ret = emotes.get_message(emotes.HUH)
 
             elif self.text == '!join':
-                send_message(discord.Object(id='155932302671740929'), 'butts')
+                joinVoice();
                 #join_voice_channel(discord.Object(id='134973009910956033'))
 
             elif 'scootabot' in self.text:
@@ -147,6 +147,9 @@ class Command:
 
         return ret
 
+@asyncio.coroutine
+def joinVoice():
+    send_message(discord.Object(id='155932302671740929'), 'butts')
 
 @client.event
 @asyncio.coroutine
