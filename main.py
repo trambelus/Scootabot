@@ -85,7 +85,7 @@ class Command:
                     ret = emotes.get_message(emotes.HUH)
 
             elif self.text == '!join':
-                join_voice_channel(discord.Object(134973009910956033))
+                join_voice_channel(discord.Object(id='134973009910956033'))
 
             elif 'scootabot' in self.text:
 
