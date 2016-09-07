@@ -65,7 +65,7 @@ class Command:
             if self.text == '!reload':
                 ret = restart(self.message.channel.id)
                 # Only returns this if a restart isn't happening
-                
+
             elif self.text == '!force-reload':
                 restart(self.message.channel.id, force=True)
 
@@ -105,7 +105,7 @@ class Command:
                             " + ".join(map(str,roll[1:])),
                             sum(dice)
                         )
-                    else:    
+                    else:
                         ret = "{}\n _Rolling {}d{}:_\n  {}\n**={}**".format(
                             emotes.get_emote(emotes.YEP),
                             roll[0],
@@ -154,7 +154,7 @@ def on_ready():
         print(sys.argv)
         channel = client.get_channel(sys.argv[1])
         print(channel)
-        client.send_message(channel, emotes.get_message(emotes.HI, random.choice(["all","everyone","everybody","folks","guys","y'all"])))
+        yield from client.send_message(channel, emotes.get_message(emotes.HI, random.choice(["all","everyone","everybody","folks","guys","y'all"])))
     logging.info("Ready!")
     logging.debug("Launched with args {}".format(sys.argv))
 
@@ -168,7 +168,7 @@ def on_message(message):
         response = cmd.process()
 
         if response:
-            client.send_message(message.channel, response)
+            yield from client.send_message(message.channel, response)
 
 def main():
 
