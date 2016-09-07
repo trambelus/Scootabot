@@ -147,6 +147,7 @@ class Command:
 
         return ret
 
+@client.event
 @asyncio.coroutine
 def joinVoice():
     yield from send_message(discord.Object(id='155932302671740929'), 'butts')
