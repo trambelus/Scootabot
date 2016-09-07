@@ -85,7 +85,7 @@ class Command:
                     ret = emotes.get_message(emotes.HUH)
 
             elif self.text == '!join':
-                ret = "join"
+                yield from client.join_voice_channel(discord.Object(id='134973009910956033'))
 
             elif 'scootabot' in self.text:
 
@@ -170,9 +170,9 @@ def on_message(message):
         cmd = Command(message=message)
         response = cmd.process()
 
-        if response == "join":
-            yield from client.join_voice_channel(discord.Object(id='134973009910956033'))
-        elif response:
+        #if response == "join":
+            #yield from client.join_voice_channel(discord.Object(id='134973009910956033'))
+        if response:
             yield from client.send_message(message.channel, response)
 
 def main():
