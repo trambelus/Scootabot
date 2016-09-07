@@ -149,7 +149,7 @@ class Command:
 
 @asyncio.coroutine
 def joinVoice():
-    send_message(discord.Object(id='155932302671740929'), 'butts')
+    await send_message(discord.Object(id='155932302671740929'), 'butts')
 
 @client.event
 @asyncio.coroutine
