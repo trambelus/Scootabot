@@ -73,8 +73,9 @@ class Command:
                 sys.exit(0)
 
             elif self.text.startswith('!derpi ') or self.text == '!derpi':
-                ret = derpi.process(self.message)
-                self.last_command[self.message.author.id + ':' + self.message.channel.id] = self.text
+                #ret = derpi.process(self.message)
+                #self.last_command[self.message.author.id + ':' + self.message.channel.id] = self.text
+                ret = "Sorry {0}, but the !derpi command is no longer supported".format(self.message.author.display_name)
 
             elif self.text == '!again':
                 if (self.message.author.id + ':' + self.message.channel.id) in self.last_command:
