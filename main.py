@@ -179,7 +179,6 @@ def on_message(message):
 
         sendMessage("Beep boop, bot")
 
-@client.event
 @asyncio.coroutine
 def sendMessage(messageText):
     yield from client.send_message(discord.Channel(id='155932302671740929'), messageText)
