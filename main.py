@@ -177,21 +177,12 @@ def on_message(message):
         if response:
             yield from client.send_message(message.channel, response)
 
-        sendMessage("Beep boop, bot")
-
-@asyncio.coroutine
-def sendMessage(messageText):
-    yield from client.send_message(discord.Channel(id='155932302671740929'), messageText)
-
 def main():
 
     password = auth.find_pw("discord")
 
     #yield from client.login(EMAIL, password)
     client.run(password) # enter main loop
-
-    #reminder.createThread()
-    sendMessage("Hello world")
 
 if __name__ == '__main__':
     main()
