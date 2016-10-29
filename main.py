@@ -177,6 +177,8 @@ def on_message(message):
         if response:
             yield from client.send_message(message.channel, response)
 
+        sendMessage("Beep boop, bot")
+
 @client.event
 @asyncio.coroutine
 def sendMessage(messageText):
