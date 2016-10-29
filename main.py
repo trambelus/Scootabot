@@ -179,7 +179,7 @@ def on_message(message):
 
 
 def sendMessage(messageText):
-    yield from client.send_message(155932302671740929, messageText)
+    yield from client.send_message(discord.Object(id='155932302671740929'), messageText)
 
 def main():
 
