@@ -19,6 +19,7 @@ import derpi
 import emotes
 import auth
 import response
+import reminder
 
 logging.basicConfig(level=logging.INFO, filename=time.strftime('logs/%Y-%m-%d_%H.%M.%S.log'))
 
@@ -182,6 +183,8 @@ def main():
 
     #yield from client.login(EMAIL, password)
     client.run(password) # enter main loop
+
+    reminder.createThread()
 
 if __name__ == '__main__':
     main()
