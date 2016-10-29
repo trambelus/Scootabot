@@ -177,7 +177,8 @@ def on_message(message):
         if response:
             yield from client.send_message(message.channel, response)
 
-
+@client.event
+@asyncio.coroutine
 def sendMessage(messageText):
     yield from client.send_message(discord.Channel(id='155932302671740929'), messageText)
 
