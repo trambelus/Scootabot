@@ -21,7 +21,7 @@ def process(message):
         tags = []
     else:
         tags = words[1].split(',')
-    if message.channel.is_private or "nsfw" not in message.channel.topic:
+    if message.channel.is_private or "nsfw" not in message.channel.topic.lower():
         tags.append("safe")
     # Blacklisted tags
     tags.append("-poop")
