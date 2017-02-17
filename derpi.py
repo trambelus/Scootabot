@@ -21,12 +21,13 @@ def process(message):
         tags = []
     else:
         tags = words[1].split(',')
-    if message.channel.is_private or "nsfw" not in message.channel.name:
+    if message.channel.is_private or "nsfw" not in message.channel.topic:
         tags.append("safe")
     # Blacklisted tags
     tags.append("-poop")
     tags.append("-diaper")
     tags.append("-urine")
+    tags.append("score.gte:1")
     try:
         response = search(tags)
         return response
