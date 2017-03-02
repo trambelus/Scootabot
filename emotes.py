@@ -156,10 +156,10 @@ def get_message(eid, author=None):
   current_hour = hour() - 5
   
   if (eid == NOPE):
-    ret = choice(["Nope", "Nuh-uh", "No way", "Nah"]) + choice(["", ".", "!"])
+    ret = choice(["Nope", "Nuh-uh", "No way", "Nah", "What do you think?", "Do you need to ask?"]) + choice(["", ".", "!"])
 
   if (eid == YEP):
-    ret = choice(["Yep","Yeah","Yes","Uh-huh"]) + choice(["",".","!","!"])
+    ret = choice(["Yep","Yeah","Yes","Uh-huh", "Yah-huh", "All the yes", "You know it", "You bet your butt"]) + choice(["",".","!","!"])
 
   if (eid == BYE):
     bye_messages = ["Later{}", "Bye{}"]
