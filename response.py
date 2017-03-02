@@ -17,14 +17,10 @@ nicknames = {
 
 # Answer a general-purpose question with yes, no, or huh?
 def question_general():
-    ret = ""
-    chance = random.randint(0, 98)
-    if (chance < 34):
-        ret = emotes.get_message(emotes.YEP)
-    elif (34 <= chance < 67):
-        ret = emotes.get_message(emotes.NOPE)
-    else:
-        ret = emotes.get_message(emotes.HUH)
+    ret = random.choice([
+        emotes.get_message(emotes.YEP),
+        emotes.get_message(emotes.NOPE)
+    ])
     return ret
 
 # Answer a question asking for a choice to be made.
